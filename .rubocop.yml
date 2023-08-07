@@ -1,0 +1,13 @@
+require:
+- rubocop-rake
+- rubocop-minitest
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.6
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
