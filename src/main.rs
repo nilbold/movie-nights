@@ -1,9 +1,16 @@
 use std::net::TcpListener;
 
+use sqlx::PgPool;
+
+use movie_nights::config::AppConfig;
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let listener = TcpListener::bind("127.0.0.1:8000")?;
-    movie_nights::run(listener)?.await?;
+    let config = AppConfig::read()?;
+    let db_pool = PgPool::connect(&config.database.connection_string()).await?;
+    let listener = TcpListener::bind(format!("127.0.0.1:{}", config.port))?;
+
+    movie_nights::run(listener, db_pool)?.await?;
 
     Ok(())
 }

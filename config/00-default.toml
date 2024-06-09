@@ -1,0 +1,8 @@
+port = 8000
+
+[database]
+name = "movies"
+user = "postgres"
+pass = "password"
+host = "localhost"
+port = 5432
